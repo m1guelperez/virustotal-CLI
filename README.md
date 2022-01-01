@@ -5,15 +5,14 @@
 [![Rust](https://github.com/m1guelperez/VirusTotal-Folderscanner/actions/workflows/rust.yml/badge.svg)](https://github.com/m1guelperez/VirusTotal-Folderscanner/actions/workflows/rust.yml)
 
 ## About The Project
-This application is a folder-scanner written in Rust.
+This application is a CLI application for VirusTotal written in Rust.
 
 You will need a valid API key to use it, which you can get at (https://www.virustotal.com/gui/join-us).
 
 The free API has a limit of 4 requests per minute and 500 requests per day.
 Therefore, this program will scan only the first 4 files in a folder, during default mode. 
 
-Open the program via the commandline and provide the api key and the path to the folder you want to scan (preferably
-absolute path) or a list of URLs.
+Open the program via the commandline and provide the api key in the configfile and a list of URLs you want to scan.
 
 ## Caution!
 The `testWebsites.txt` is purely for testing. Do NOT click on any of those links. 
@@ -25,12 +24,14 @@ The `testWebsites.txt` is purely for testing. Do NOT click on any of those links
 Example how to run the program yourself:
 
 ### Prerequisites
+Fill in the API_KEY in a configfile.txt.
+
 ## Running the programming:
 You can run the program with the following command:
 
 * [powershell]
     ````sh
-    VirusTotal_Folderscanner [API_KEY], [PATH], [URL]
+    VirusTotal_Folderscanner [API_KEY], [URLs]
 
 ### Installation:
 
@@ -44,9 +45,13 @@ You can run the program with the following command:
 ## Roadmap
 
 - [x] Added pre-release version with default values
+- [x] Create option to read API_KEY configfile
   - [ ] Read args from commandline
-  - [ ] Create option to read API_KEY and path from configfile
+    - [x] Url
+    - [ ] Filepaths
 - [ ] Release version 1.0
+- [ ] Support Linux filesystem
+- [ ] Option to read paths from configfile
 - [ ] Add max_scans feature (use max. free API request limit.)
 - [ ] Add GUI
 
