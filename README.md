@@ -1,8 +1,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Check and Lint](https://github.com/m1guelperez/VirusTotal-Folderscanner/actions/workflows/check-and-lint.yaml/badge.svg)](https://github.com/m1guelperez/VirusTotal-Folderscanner/actions/workflows/check-and-lint.yaml)
-[![Tests](https://github.com/m1guelperez/VirusTotal-Folderscanner/actions/workflows/test.yaml/badge.svg)](https://github.com/m1guelperez/VirusTotal-Folderscanner/actions/workflows/test.yaml)
-[![Release](https://github.com/m1guelperez/VirusTotal-Folderscanner/actions/workflows/release-packaging.yaml/badge.svg)](https://github.com/m1guelperez/VirusTotal-Folderscanner/actions/workflows/release-packaging.yaml)
-[![Rust](https://github.com/m1guelperez/VirusTotal-Folderscanner/actions/workflows/rust.yml/badge.svg)](https://github.com/m1guelperez/VirusTotal-Folderscanner/actions/workflows/rust.yml)
+[![Check and Lint](https://github.com/m1guelperez/virustotal-CLI/actions/workflows/check-and-lint.yaml/badge.svg)](https://github.com/m1guelperez/virustotal-CLI/actions/workflows/check-and-lint.yaml)
+[![Tests](https://github.com/m1guelperez/virustotal-CLI/actions/workflows/test.yaml/badge.svg)](https://github.com/m1guelperez/virustotal-CLI/actions/workflows/test.yaml)
+[![Release](https://github.com/m1guelperez/virustotal-CLI/actions/workflows/release-packaging.yaml/badge.svg)](https://github.com/m1guelperez/virustotal-CLI/actions/workflows/release-packaging.yaml)
+[![Rust](https://github.com/m1guelperez/virustotal-CLI/actions/workflows/rust.yml/badge.svg)](https://github.com/m1guelperez/virustotal-CLI/actions/workflows/rust.yml)
 
 ## About The Project
 This application is a CLI application for VirusTotal written in Rust.
