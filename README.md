@@ -24,14 +24,19 @@ The `testWebsites.txt` is purely for testing. Do NOT click on any of those links
 Example how to run the program yourself:
 
 ### Prerequisites
-Fill in the API_KEY in a configfile.txt.
+Fill in the API_KEY in a configfile.txt and place it in the same folder as the 
+executable.
+
+Format: (Do not forget the comma at the end!)
+
+`apikey=[KEY],`
 
 ## Running the programming:
 You can run the program with the following command:
 
 * [powershell]
     ````sh
-    VirusTotal_Folderscanner [API_KEY], [URLs]
+    VirusTotal_Folderscanner [URLs]
 
 ### Installation:
 
@@ -44,12 +49,12 @@ You can run the program with the following command:
 
 ## Roadmap
 
-- [x] Create option to read API_KEY configfile
+- [x] Create option to read API_KEY from configfile
   - [ ] Read args from commandline
     - [x] Url
     - [ ] Filepaths
 - [ ] Added pre-release version
-- [ ] Add folderscanner feature
+- [ ] Add folder-scan feature
 - [ ] Add max_scans feature (use max. free API request limit.)
 - [ ] Release version 1.0
 - [ ] Support Linux filesystem
