@@ -1,6 +1,4 @@
-use std::borrow::Borrow;
 use std::fs;
-use std::path::Path;
 use virustotal::VtClient;
 use crate::response_controller::{ResponseControllerFile, ResponseControllerUrl};
 
