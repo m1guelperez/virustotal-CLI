@@ -18,9 +18,7 @@ impl RequestControllerClient {
         let scan_client = VtClient::new(self.api_key.as_str());
         let scan_result = scan_client.scan_url(url);
 
-        let mut vec_queue = Vec::new();
-
-        vec_queue.push(ResponseControllerUrl::new(self.api_key.to_string(), scan_result));
+        let mut vec_queue = vec![ResponseControllerUrl::new(self.api_key.to_string(), scan_result)];
 
         vec_queue
     }

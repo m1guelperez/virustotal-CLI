@@ -13,7 +13,7 @@ fn main() {
     let cli_argument: Vec<String> = env::args().collect();
     let args = process_user_input(cli_argument);
 
-    ///Retrieve API_KEY
+    //Retrieve API_KEY
     let path = Path::new("configfile.txt");
     let api_key = get_api_key_from_configfile(path);
 
@@ -55,7 +55,7 @@ fn get_api_key_from_configfile(path: &Path) -> String {
     for char in value_from_configfile.trim().chars() {
         if char == '=' && !guard {
             guard = true;
-        } else if guard == true && char != ',' {
+        } else if guard && char != ',' {
             key.push(char);
         }
     }
