@@ -53,7 +53,7 @@ You can run the program with the following command:
   - [ ] Read args from commandline
     - [x] Url
     - [ ] Filepaths
-- [ ] Added pre-release version
+- [ ] Add pre-release version
 - [ ] Add folder-scan feature
 - [ ] Add max_scans feature (use max. free API request limit.)
 - [ ] Release version 1.0
