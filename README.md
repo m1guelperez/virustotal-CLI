@@ -1,6 +1,6 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Check and Lint](https://github.com/m1guelperez/virustotal-CLI/actions/workflows/check-and-lint.yaml/badge.svg)](https://github.com/m1guelperez/virustotal-CLI/actions/workflows/check-and-lint.yaml)
-[![Tests](https://github.com/m1guelperez/virustotal-CLI/actions/workflows/test.yaml/badge.svg)](https://github.com/m1guelperez/virustotal-CLI/actions/workflows/test.yaml)
+<!--[![Check and Lint](https://github.com/m1guelperez/virustotal-CLI/actions/workflows/check-and-lint.yaml/badge.svg)](https://github.com/m1guelperez/virustotal-CLI/actions/workflows/check-and-lint.yaml)-->
+<!--[![Tests](https://github.com/m1guelperez/virustotal-CLI/actions/workflows/test.yaml/badge.svg)](https://github.com/m1guelperez/virustotal-CLI/actions/workflows/test.yaml)-->
 [![Release](https://github.com/m1guelperez/virustotal-CLI/actions/workflows/release-packaging.yaml/badge.svg)](https://github.com/m1guelperez/virustotal-CLI/actions/workflows/release-packaging.yaml)
 [![Rust](https://github.com/m1guelperez/virustotal-CLI/actions/workflows/rust.yml/badge.svg)](https://github.com/m1guelperez/virustotal-CLI/actions/workflows/rust.yml)
 
@@ -44,15 +44,16 @@ You can run the program with the following command:
 
 ## Roadmap
 
-- [x] Added pre-release version with default values
 - [x] Create option to read API_KEY configfile
   - [ ] Read args from commandline
     - [x] Url
     - [ ] Filepaths
+- [ ] Added pre-release version
+- [ ] Add folderscanner feature
+- [ ] Add max_scans feature (use max. free API request limit.)
 - [ ] Release version 1.0
 - [ ] Support Linux filesystem
 - [ ] Option to read paths from configfile
-- [ ] Add max_scans feature (use max. free API request limit.)
 - [ ] Add GUI
 
 ## License
