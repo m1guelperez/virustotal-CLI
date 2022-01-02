@@ -1,9 +1,10 @@
+name: Release Packaging
+
 on:
   push:
-    branches:
-      - main
-
-name: Release Packaging
+    branches: [ master ]
+    pull_request:
+      branches: [ master ]
 
 jobs:
   release:
