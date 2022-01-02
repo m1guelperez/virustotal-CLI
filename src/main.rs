@@ -10,16 +10,17 @@ mod response_controller;
 mod request_controller;
 
 fn main() {
-    let args = process_user_input();
+    let cli_argument: Vec<String> = env::args().collect();
+    let args = process_user_input(cli_argument);
+
+    ///Retrieve API_KEY
+    let path = Path::new("configfile.txt");
+    let api_key = get_api_key_from_configfile(path);
 
     let mut urls: Vec<String> = Vec::new();
     for arg in args.iter() {
         urls.push(arg.to_string());
     }
-
-
-    let path = Path::new("configfile.txt");
-    let api_key = get_api_key_from_configfile(path);
 
     let client = RequestControllerClient::new(api_key.as_str());
     if urls.is_empty() {
@@ -33,14 +34,16 @@ fn main() {
                 let vec_url_scan_result = re.analyze_url_report();
                 all_scan_results.insert(vec_url_scan_result.0, vec_url_scan_result.1);
             }
-            //println!("{:?}", all_scan_results);
+
         }
+
         print_hashmap(all_scan_results);
         let mut guard = String::new();
-        io::stdin().read_line(&mut guard).expect("Could not write to guard");
+        io::stdin().read_line(&mut guard).expect("Could not write to guard.");
     }
 }
 
+///Retrieves the API_KEY from the configfile, which is placed in the same folder as the executable.
 fn get_api_key_from_configfile(path: &Path) -> String {
     let value_from_configfile = match fs::read_to_string(path) {
         Ok(v) => v,
@@ -60,26 +63,25 @@ fn get_api_key_from_configfile(path: &Path) -> String {
     key
 }
 
+///Translates the copied path into the OS correct form, regarding backslashes.
 fn translate_path(path: &String) {
     if cfg!(target_os ="Windows") {} else {
         println!("ubuntu")
     }
 }
-
-fn process_user_input() -> Vec<String> {
-    let args: Vec<String> = env::args().collect();
+///Processes the user input. Checks for existing CLI arguments and handles stdinputs and outputs.
+fn process_user_input(args: Vec<String>) -> Vec<String> {
     let mut cleared_args = Vec::new();
-
     let mut urls_without_cli = String::new();
 
     //TODO: Add linux example.
     if args.len() <= 1 {
         io::stdin().read_line(&mut urls_without_cli).expect("Failed to read line.");
     } else {
-        for arg in args {
-            cleared_args.push(arg);
-            return cleared_args;
-        };
+        for arg in args.iter().skip(1) {
+            cleared_args.push(arg.to_string());
+        }
+        return cleared_args;
     }
 
     let urls_as_vec = if urls_without_cli.is_empty() {
@@ -92,7 +94,7 @@ fn process_user_input() -> Vec<String> {
     };
     urls_as_vec
 }
-
+///Prints the results from the scans in a 'pretty' way to stdout.
 fn print_hashmap(map: HashMap<String, i32>) {
     for x in map {
         let fmt = format!("{} {}\n", x.0, x.1);
