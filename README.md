@@ -29,15 +29,23 @@ executable.
 
 Format: (Do not forget the comma at the end!)
 
-`apikey=[KEY],`
+`apikey=[KEY],;`
 
 ## Running the programming:
 You can run the program with the following command:
 
+The needed flags are: "-u" for URLs or "-p" for PATHs.
+
 * [powershell]
     ````sh
-    VirusTotal_Folderscanner [URLs]
+    virustotal_folderscanner.exe [URLs] [FLAG]
+  
+Example:
 
+* [powershell]
+    ````sh
+    virustotal_folderscanner.exe google.de -u
+  
 ### Installation:
 
 1. Get a free API Key at [https://www.virustotal.com/gui/join-us](https://www.virustotal.com/gui/join-us)
@@ -50,9 +58,9 @@ You can run the program with the following command:
 ## Roadmap
 
 - [x] Create option to read API_KEY from configfile
-  - [ ] Read args from commandline
+  - [x] Read args from commandline
     - [x] Url
-    - [ ] Filepaths
+    - [x] Filepaths
 - [ ] Add pre-release version
 - [ ] Add folder-scan feature
 - [ ] Add max_scans feature (use max. free API request limit.)
