@@ -58,9 +58,10 @@ Example:
 ## Roadmap
 
 - [x] Create option to read API_KEY from configfile
-  - [x] Read args from commandline
+  - [ ] Read args from commandline
+    - [x] Toggle between URLs and PATHs 
     - [x] Url
-    - [x] Filepaths
+    - [ ] Filepaths
 - [ ] Add pre-release version
 - [ ] Add folder-scan feature
 - [ ] Add max_scans feature (use max. free API request limit.)
