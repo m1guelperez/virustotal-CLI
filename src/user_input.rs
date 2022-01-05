@@ -10,7 +10,7 @@ pub fn process_user_input(mut args: Vec<String>) -> (Vec<String>, &'static str) 
         io::stdin().read_line(&mut stdin_input).expect("Failed to read line.");
     } else {
         let path_or_url = determine_path_or_url(&args);
-        for arg in args.iter().skip(1) {
+        for arg in args.iter() {
             cleared_args.push(arg.to_string());
         }
         cleared_args.remove(cleared_args.len() - 1);
@@ -38,7 +38,7 @@ fn determine_path_or_url(commands: &Vec<String>) -> &'static str {
         "url"
     } else if commands.last().unwrap().to_lowercase().trim() == "-p" {
         "path"
-    } else if !commands.is_empty() && (!(commands.last().unwrap().to_lowercase().trim() == "-p") && !(commands.last().unwrap().to_lowercase().trim() == "-u")) {
+    } else if !commands.is_empty() && (commands.last().unwrap().to_lowercase().trim() != "-p" && commands.last().unwrap().to_lowercase().trim() != "-u") {
         panic!("You have to provide either the '-u' or '-p' flag.");
     } else {
         eprintln!("Could not determine if it is a path or url");

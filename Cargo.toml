@@ -11,4 +11,3 @@ regex = "1.5.4"
 
 [replace]
 "virustotal:2.0.0" = {git = 'https://github.com/m1guelperez/virustotal.rs.git'}
-

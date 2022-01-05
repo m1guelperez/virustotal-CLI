@@ -1474,7 +1474,7 @@ replace = "virustotal 2.0.0 (git+https://github.com/m1guelperez/virustotal.rs.gi
 [[package]]
 name = "virustotal"
 version = "2.0.0"
-source = "git+https://github.com/m1guelperez/virustotal.rs.git#88b33a3d6c21e9eac5c2fed51bde76e0f9a99124"
+source = "git+https://github.com/m1guelperez/virustotal.rs.git#fdb7e7ce6f0d165947a5700b6669492ef71f1766"
 dependencies = [
  "anyhow",
  "reqwest",
