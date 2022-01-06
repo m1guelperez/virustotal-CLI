@@ -1,7 +1,7 @@
 use std::io;
 
 ///Processes the user input. Checks for existing CLI arguments and handles std::inputs and outputs.
-pub fn process_user_input(mut args: Vec<String>) -> (Vec<String>, &'static str) {
+pub fn process_user_input(args: Vec<String>) -> (Vec<String>, &'static str) {
     let mut cleared_args = Vec::new();
     let mut stdin_input = String::new();
 
@@ -10,8 +10,8 @@ pub fn process_user_input(mut args: Vec<String>) -> (Vec<String>, &'static str) 
         io::stdin().read_line(&mut stdin_input).expect("Failed to read line.");
     } else {
         let path_or_url = determine_path_or_url(&args);
-        for arg in args.iter() {
-            cleared_args.push(arg.to_string());
+        for arg in args.iter().skip(1) {
+            cleared_args.push(arg.trim().to_string());
         }
         cleared_args.remove(cleared_args.len() - 1);
         return (cleared_args, path_or_url);

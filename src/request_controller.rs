@@ -17,7 +17,6 @@ impl RequestControllerClient {
     pub fn send_url_scan(&self, url: &str) -> Vec<ResponseControllerUrl> {
         let scan_client = VtClient::new(self.api_key.as_str());
         let scan_result = scan_client.scan_url(url);
-
         let vec_queue = vec![ResponseControllerUrl::new(self.api_key.to_string(), scan_result)];
 
         vec_queue

@@ -20,7 +20,7 @@ fn main() {
 
     let mut urls: Vec<String> = Vec::new();
     for arg in args.0.iter() {
-        urls.push(arg.to_string());
+        urls.push(arg.trim().to_string());
     }
 
     let client = RequestControllerClient::new(api_key.as_str());
