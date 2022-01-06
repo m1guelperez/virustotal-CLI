@@ -27,9 +27,9 @@ Example how to run the program yourself:
 Fill in the API_KEY in a configfile.txt and place it in the same folder as the 
 executable.
 
-Format: (Do not forget the comma at the end!)
+Format: (Do not forget the semicolon at the end!)
 
-`apikey=[KEY],;`
+`apikey=[KEY];`
 
 ## Running the programming:
 You can run the program with the following command:
