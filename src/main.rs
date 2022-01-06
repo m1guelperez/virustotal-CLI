@@ -18,17 +18,14 @@ fn main() {
     let path = Path::new("configfile.txt");
     let api_key = get_api_key_from_configfile(path);
 
-    let mut urls: Vec<String> = Vec::new();
-    for arg in args.0.iter() {
-        urls.push(arg.trim().to_string());
-    }
+    let mut seperated_input: Vec<String> = args.0;
 
     let client = RequestControllerClient::new(api_key.as_str());
-    if urls.is_empty() {
+    if seperated_input.is_empty() {
         std::process::exit(1);
     } else {
         let mut all_scan_results = HashMap::new();
-        for url in urls {
+        for url in seperated_input {
             let res = client.send_url_scan(&url);
 
             for re in res {
