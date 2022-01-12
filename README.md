@@ -5,17 +5,23 @@
 [![Rust](https://github.com/m1guelperez/virustotal-CLI/actions/workflows/rust.yml/badge.svg)](https://github.com/m1guelperez/virustotal-CLI/actions/workflows/rust.yml)
 
 ## About The Project
+
 This application is a CLI application for VirusTotal written in Rust.
 
 You will need a valid API key to use it, which you can get at (https://www.virustotal.com/gui/join-us).
 
-The free API has a limit of 4 requests per minute and 500 requests per day.
-Therefore, this program will scan only the first 4 files in a folder, during default mode. 
+The free API has a limit of 2 requests per minute and 500 requests per day.
+Therefore, this program will scan only the first 2 files in a folder, during default mode. 
 
 Open the program via the commandline and provide the api key in the configfile and a list of URLs you want to scan.
 
+
+**ATTENTION:
+The limit for requests per minute were tuned down for the public api. You can now only send 2 requests instead of 4 per minute.**
+
+
 ## Caution!
-The `testWebsites.txt` is purely for testing. Do NOT click on any of those links. 
+The `testWebsites.txt` is purely for testing. Do NOT click on any of those links.
 
 ### Built with
 * [Rust]
@@ -27,9 +33,9 @@ Example how to run the program yourself:
 Fill in the API_KEY in a configfile.txt and place it in the same folder as the 
 executable.
 
-Format: (Do not forget the comma at the end!)
+Format: (Do not forget the semicolon at the end!)
 
-`apikey=[KEY],;`
+`apikey=[KEY];`
 
 ## Running the programming:
 You can run the program with the following command:
@@ -58,13 +64,13 @@ Example:
 ## Roadmap
 
 - [x] Create option to read API_KEY from configfile
-  - [ ] Read args from commandline
+  - [x] Read args from commandline
     - [x] Toggle between URLs and PATHs 
     - [x] Url
-    - [ ] Filepaths
-- [ ] Add pre-release version
-- [ ] Add folder-scan feature
-- [ ] Add max_scans feature (use max. free API request limit.)
+    - [x] Filepaths for windows
+- [x] Add pre-release version
+- [x] Add folder-scan feature
+- [ ] Add max_scans feature per day (use max. free API request limit.)
 - [ ] Release version 1.0
 - [ ] Support Linux filesystem
 - [ ] Option to read paths from configfile
