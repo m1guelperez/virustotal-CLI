@@ -5,10 +5,12 @@ use std::fs;
 use std::io;
 use std::io::{Write};
 use std::path::Path;
+use crate::response_controller::ResponseControllerFile;
 
 mod response_controller;
 mod request_controller;
 mod user_input;
+mod analytics;
 
 fn main() {
     let cli_arguments: Vec<String> = env::args().collect();
@@ -18,26 +20,39 @@ fn main() {
     let path = Path::new("configfile.txt");
     let api_key = get_api_key_from_configfile(path);
 
-    let mut urls: Vec<String> = Vec::new();
-    for arg in args.0.iter() {
-        urls.push(arg.to_string());
-    }
+    let mut seperated_input: Vec<String> = args.0;
 
     let client = RequestControllerClient::new(api_key.as_str());
-    if urls.is_empty() {
+    if seperated_input.is_empty() {
         std::process::exit(1);
-    } else {
+    } else if args.1 == "url" {
+        //TODO:Replace with custom made method.
         let mut all_scan_results = HashMap::new();
-        for url in urls {
-            let res = client.send_url_scan(&url);
 
-            for re in res {
-                let vec_url_scan_result = re.analyze_url_report();
-                all_scan_results.insert(vec_url_scan_result.0, vec_url_scan_result.1);
-            }
+        let res = RequestControllerClient::send_url_scan(&client, seperated_input);
+        for re in res {
+            let vec_url_scan_result = re.analyze_url_report();
+            all_scan_results.insert(vec_url_scan_result.0, vec_url_scan_result.1);
+        }
+        print_hashmap(all_scan_results);
+        let mut guard = String::new();
+        io::stdin().read_line(&mut guard).expect("Could not write to guard.");
+    } else {
+        //TODO:Replace with custom made method.
+        let mut all_file_scans = HashMap::new();
+        let mut path = String::new();
+        for input in seperated_input {
+            path = input;
+        }
+        println!("Current path input is: {}", path);
+        let res = RequestControllerClient::send_file_scans(&client, path);
+
+        for re in res {
+            let vec_file_results = re.analyze_file_report();
+            all_file_scans.insert(vec_file_results.0, vec_file_results.1);
         }
 
-        print_hashmap(all_scan_results);
+        print_hashmap(all_file_scans);
         let mut guard = String::new();
         io::stdin().read_line(&mut guard).expect("Could not write to guard.");
     }
@@ -59,22 +74,23 @@ fn get_api_key_from_configfile(path: &Path) -> String {
             key.push(char);
         }
     }
-    println!("{}", key);
     key
 }
 
 ///Translates the copied path into the OS correct form, regarding backslashes.
 fn translate_path(path: &String) {
-    if cfg!(target_os ="Windows") {} else {
-        println!("ubuntu")
+    if cfg!(target_os ="Windows") {
+        println!("Windows detected.")
+    } else {
+        println!("Linux detected.")
     }
 }
 
 ///Prints the results from the scans in a 'pretty' way to stdout.
 fn print_hashmap(map: HashMap<String, i32>) {
     for x in map {
-        let fmt = format!("{} {}\n", x.0, x.1);
-        io::stdout().write_all(fmt.as_bytes()).expect("Error while printing to std::out");
+        let results = format!("URL: {} Positives: {}\n", x.0, x.1);
+        io::stdout().write_all(results.as_bytes()).expect("Error while printing to std::out");
         io::stdout().flush().expect("Could not flush std::out.");
     }
 }

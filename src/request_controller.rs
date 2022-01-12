@@ -14,30 +14,33 @@ impl RequestControllerClient {
     }
 
     ///At most 4 url scans, because of the free API limit
-    pub fn send_url_scan(&self, url: &str) -> Vec<ResponseControllerUrl> {
+    pub fn send_url_scan(&self, urls: Vec<String>) -> Vec<ResponseControllerUrl> {
         let scan_client = VtClient::new(self.api_key.as_str());
-        let scan_result = scan_client.scan_url(url);
 
-        let vec_queue = vec![ResponseControllerUrl::new(self.api_key.to_string(), scan_result)];
+        let mut vec_queue = Vec::new();
+        for url in urls.iter().take(2) {
+            let scan = scan_client.scan_url(&url);
+            vec_queue.push(ResponseControllerUrl::new(self.api_key.to_string(), scan));
+        };
 
         vec_queue
     }
 
-    ///At most 4 files, because the free API only allows 4 scans per minute.
-    /// This methods send 4 file scans from a given folder.
+    ///At most 2 files, because the free API only allows 2 scans per minute.
+    /// This method sends 2 file scans from a given folder.
     pub fn send_file_scans(&self, path: String) -> Vec<ResponseControllerFile> {
         let files = fs::read_dir(path).unwrap();
         let client = VtClient::new(&self.api_key);
 
-        let mut vec_results = Vec::new();
+        let mut vec_queue = Vec::new();
 
-        for file in files.take(4) {
+        for file in files.take(2) {
             match client.scan_file(file.unwrap().path().display().to_string().as_str()) {
-                Ok(v) => vec_results.push(ResponseControllerFile::new(self.api_key.to_string(), v)),
+                Ok(v) => vec_queue.push(ResponseControllerFile::new(self.api_key.to_string(), v)),
                 Err(_e) => continue,
             };
         }
-        vec_results
+        vec_queue
     }
 }
 

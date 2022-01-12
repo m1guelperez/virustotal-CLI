@@ -1,4 +1,6 @@
 use std::collections::HashMap;
+use std::thread::sleep;
+use std::time::Duration;
 use virustotal::{FileScanResponse, UrlScanResponse, VtClient};
 use crate::RequestControllerClient;
 
@@ -37,22 +39,20 @@ impl ResponseControllerUrl {
     }
 
     ///Maybe change this to one url only instead of Vector?
-    pub fn analyze_url_report(&self) -> (String,i32) {
+    pub fn analyze_url_report(&self) -> (String, i32) {
         let client = VtClient::new(self.api_key.as_str());
 
         //default value if an error occurs
-        let mut scan_results=("Error occurred".to_string(),-999);
-
+        let mut scan_results = ("Error occurred".to_string(), -999);
         match &self.scan_id {
             Some(v) => {
                 let positives = client.report_url(v).positives.unwrap() as i32;
-                scan_results =(self.url.as_ref().unwrap().clone(), positives);
+                scan_results = (self.url.as_ref().unwrap().clone(), positives);
             }
             None => (),
         }
 
         scan_results
-
     }
 }
 
@@ -69,22 +69,30 @@ impl ResponseControllerFile {
         }
     }
 
-    pub fn analyze_file_reports(&self, results: Vec<ResponseControllerFile>) -> HashMap<String, u32> {
+    pub fn analyze_file_report(&self) -> (String, i32) {
         let client = VtClient::new(self.api_key.as_str());
 
-        let mut map_of_positives = HashMap::new();
+        let mut scan_results = ("Error occurred".to_string(), -999);
 
-        for res in results {
-            match res.scan_id {
+        //Try at most 2 times before canceling (API limit)
+        let mut maximum_retries = 0;
+
+        while maximum_retries < 4 {
+            match &self.sha_256 {
                 Some(v) => {
-                    let positives = client.report_file(v.as_str()).positives.unwrap();
-                    if positives > 0 {
-                        map_of_positives.insert(res.resource.unwrap(), positives);
+                    let temp_results = client.report_file(v.as_str());
+                    if temp_results.response_code == 1 {
+                        scan_results = (self.resource.as_ref().unwrap().clone(), temp_results.positives.unwrap() as i32);
+                        return scan_results;
+                    } else {
+                        maximum_retries += 1;
+                        //Sleep timer is needed because the scan results aren't available instantly depending on the file size.
+                        sleep(Duration::new(30, 0))
                     }
-                },
-                None => continue,
+                }
+                None => (),
             }
         }
-        map_of_positives
+        scan_results
     }
 }
