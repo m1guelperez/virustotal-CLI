@@ -10,7 +10,6 @@ use crate::response_controller::ResponseControllerFile;
 mod response_controller;
 mod request_controller;
 mod user_input;
-mod analytics;
 
 fn main() {
     let cli_arguments: Vec<String> = env::args().collect();
