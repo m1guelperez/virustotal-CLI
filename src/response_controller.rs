@@ -1,8 +1,7 @@
-use std::collections::HashMap;
 use std::thread::sleep;
 use std::time::Duration;
 use virustotal::{FileScanResponse, UrlScanResponse, VtClient};
-use crate::RequestControllerClient;
+use crate::request_controller::MAXIMUM_REQUESTS_PER_MINUTE;
 
 pub struct ResponseControllerUrl {
     api_key: String,
@@ -41,7 +40,6 @@ impl ResponseControllerUrl {
     ///Maybe change this to one url only instead of Vector?
     pub fn analyze_url_report(&self) -> (String, i32) {
         let client = VtClient::new(self.api_key.as_str());
-
         //default value if an error occurs
         let mut scan_results = ("Error occurred".to_string(), -999);
         match &self.scan_id {
@@ -71,13 +69,11 @@ impl ResponseControllerFile {
 
     pub fn analyze_file_report(&self) -> (String, i32) {
         let client = VtClient::new(self.api_key.as_str());
-
         let mut scan_results = ("Error occurred".to_string(), -999);
-
         //Try at most 2 times before canceling (API limit)
-        let mut maximum_retries = 0;
+        let mut retries = 0;
 
-        while maximum_retries < 4 {
+        while retries < MAXIMUM_REQUESTS_PER_MINUTE {
             match &self.sha_256 {
                 Some(v) => {
                     let temp_results = client.report_file(v.as_str());
@@ -85,7 +81,7 @@ impl ResponseControllerFile {
                         scan_results = (self.resource.as_ref().unwrap().clone(), temp_results.positives.unwrap() as i32);
                         return scan_results;
                     } else {
-                        maximum_retries += 1;
+                        retries += 1;
                         //Sleep timer is needed because the scan results aren't available instantly depending on the file size.
                         sleep(Duration::new(30, 0))
                     }

@@ -1,26 +1,19 @@
 use std::collections::HashMap;
 use crate::request_controller::{RequestControllerClient};
 use std::env;
-use std::fs;
 use std::io;
 use std::io::{Write};
-use std::path::Path;
-use crate::response_controller::ResponseControllerFile;
 
 mod response_controller;
 mod request_controller;
 mod user_input;
+mod configfile_controller;
 
 fn main() {
     let cli_arguments: Vec<String> = env::args().collect();
     let args = user_input::process_user_input(cli_arguments);
-
-    //Retrieve API_KEY
-    let path = Path::new("configfile.txt");
-    let api_key = get_api_key_from_configfile(path);
-
-    let mut seperated_input: Vec<String> = args.0;
-
+    let api_key = configfile_controller::get_api_key_from_configfile();
+    let seperated_input: Vec<String> = args.0;
     let client = RequestControllerClient::new(api_key.as_str());
     if seperated_input.is_empty() {
         std::process::exit(1);
@@ -57,39 +50,10 @@ fn main() {
     }
 }
 
-///Retrieves the API_KEY from the configfile, which is placed in the same folder as the executable.
-fn get_api_key_from_configfile(path: &Path) -> String {
-    let value_from_configfile = match fs::read_to_string(path) {
-        Ok(v) => v,
-        Err(_e) => panic!("Could not read from configfile!"),
-    };
-
-    let mut guard = false;
-    let mut key = String::new();
-    for char in value_from_configfile.trim().chars() {
-        if char == '=' && !guard {
-            guard = true;
-        } else if guard && char != ';' {
-            key.push(char);
-        }
-    }
-    key
-}
-
-///Translates the copied path into the OS correct form, regarding backslashes.
-fn translate_path(path: &String) {
-    if cfg!(target_os ="Windows") {
-        println!("Windows detected.")
-    } else {
-        println!("Linux detected.")
-    }
-}
-
 ///Prints the results from the scans in a 'pretty' way to stdout.
 fn print_hashmap(map: HashMap<String, i32>) {
     for x in map {
-        let results = format!("URL: {} Positives: {}\n", x.0, x.1);
-        io::stdout().write_all(results.as_bytes()).expect("Error while printing to std::out");
-        io::stdout().flush().expect("Could not flush std::out.");
+        let results = format!("Request: {} Positives: {}\n", x.0, x.1);
+        println!("{}",results);
     }
 }
