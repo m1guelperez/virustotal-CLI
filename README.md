@@ -5,7 +5,6 @@
 [![Rust](https://github.com/m1guelperez/virustotal-CLI/actions/workflows/rust.yml/badge.svg)](https://github.com/m1guelperez/virustotal-CLI/actions/workflows/rust.yml)
 
 ## About The Project
-
 This application is a CLI application for VirusTotal written in Rust.
 
 You will need a valid API key to use it, which you can get at (https://www.virustotal.com/gui/join-us).
@@ -35,7 +34,9 @@ executable.
 
 Format: (Do not forget the semicolon at the end!)
 
-`apikey=[KEY];`
+* [textfile]
+  ````sh 
+  apikey=[KEY];
 
 ## Running the programming:
 You can run the program with the following command:
@@ -51,9 +52,9 @@ Example:
 * [powershell]
     ````sh
     virustotal_folderscanner.exe google.de -u
+    virustotal_folderscanner.exe C:/users/user/downloads -p
   
 ### Installation:
-
 1. Get a free API Key at [https://www.virustotal.com/gui/join-us](https://www.virustotal.com/gui/join-us)
 2. Clone the repo 
     ````sh
@@ -62,7 +63,6 @@ Example:
 4. Go to the folder, containing the .exe and see Prerequisites above.
 
 ## Roadmap
-
 - [x] Create option to read API_KEY from configfile
   - [x] Read args from commandline
     - [x] Toggle between URLs and PATHs 
@@ -77,18 +77,15 @@ Example:
 - [ ] Add GUI
 
 ## License
-
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 ## Contact
-
 Miguel Perez - [@m1guelperez](https://twitter.com/m1guelperez) 
 
-Email: - perezdevelopmentofficial[at]gmail.com
+Email: - perezdevelopmentofficial[at]gmail[dot]com
 
 Project Link: [https://github.com/m1guelperez/VirusTotal-Folderscanner](https://github.com/m1guelperez/VirusTotal-Folderscanner)
 
 ## Acknowledgments
-
 Thanks to [@owlinux1000](https://github.com/owlinux1000) for providing great [rust-bindings](https://github.com/owlinux1000/virustotal.rs) 
 to use the virustotal-api in Rust.
