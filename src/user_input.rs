@@ -1,7 +1,8 @@
 use std::io;
+use crate::Configfile;
 
-///Processes the user input. Checks for existing CLI arguments and handles std::inputs and outputs.
-pub fn process_user_input(args: Vec<String>) -> (Vec<String>, &'static str) {
+///Processes the user input. Checks for existing CLI arguments or std::inputs.
+pub fn process_user_input(args: Vec<String>, default_path: &str) -> (Vec<String>, &'static str) {
     let mut cleared_args = Vec::new();
     let mut stdin_input = String::new();
 
@@ -18,10 +19,10 @@ pub fn process_user_input(args: Vec<String>) -> (Vec<String>, &'static str) {
     }
     let path_or_url;
     let mut stdin_input_to_vec: Vec<String>;
-    let urls_as_vec = if stdin_input.is_empty() {
-        eprintln!("Either provide commands via CLI like that:\n\
-         Windows: .\\virustotal_folderscanner.exe [URLs] [FLAG]\nor enter them directly into the window when
-         starting the .exe");
+    let urls_as_vec = if stdin_input.len() == 1 && default_path.is_empty() {
+        println!("Either provide commands via CLI like that:\n\
+         Windows: .\\virustotal_folderscanner.exe [URLs] [FLAG]\nor enter them directly into the window when starting the .exe\n\
+         If you want to let the program only scan a default path, then make sure you added one in the configfile.");
         std::process::exit(1)
     } else {
         stdin_input_to_vec = stdin_input.split(' ').map(|s| s.to_owned()).collect();

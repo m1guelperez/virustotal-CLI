@@ -13,18 +13,6 @@ pub struct ResponseControllerUrl {
     permalink: Option<String>,
 }
 
-
-pub struct ResponseControllerFile {
-    api_key: String,
-    file_name: String,
-    response_code: i32,
-    verbose_msg: String,
-    sha_256: Option<String>,
-    scan_id: Option<String>,
-    permalink: Option<String>,
-    resource: Option<String>,
-}
-
 impl ResponseControllerUrl {
     pub fn new(key: String, response: UrlScanResponse) -> Self {
         ResponseControllerUrl {
@@ -56,6 +44,17 @@ impl ResponseControllerUrl {
     }
 }
 
+pub struct ResponseControllerFile {
+    api_key: String,
+    file_name: String,
+    response_code: i32,
+    verbose_msg: String,
+    sha_256: Option<String>,
+    scan_id: Option<String>,
+    permalink: Option<String>,
+    resource: Option<String>,
+}
+
 impl ResponseControllerFile {
     pub fn new(key: String, name: &String, response: FileScanResponse) -> Self {
         ResponseControllerFile {
@@ -73,9 +72,9 @@ impl ResponseControllerFile {
     pub fn analyze_file_report(&self) -> (String, i32) {
         let client = VtClient::new(self.api_key.as_str());
         let mut scan_results = ("Error occurred".to_string(), -999);
+
         //Try at most 2 times before canceling (API limit)
         let mut retries = 0;
-
         while retries < MAXIMUM_REQUESTS_PER_MINUTE {
             match &self.sha_256 {
                 Some(v) => {

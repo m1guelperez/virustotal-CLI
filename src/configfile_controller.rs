@@ -1,6 +1,6 @@
 use std::fs;
 
-const CONFIGFILE_NAME: &str = "personal_configfile.txt";
+const CONFIGFILE_NAME: &str = "configfile.txt";
 
 pub struct Configfile {
     pub api_key: String,
@@ -27,6 +27,10 @@ fn get_api_key_from_configfile() -> (String, i32) {
         Err(_e) => panic!("Could not read from configfile!"),
     };
     let key = iterate_through_configfile(value_from_configfile.as_str().trim(), 0);
+    if key.0.is_empty() {
+        println!("Please provide an API_KEY!");
+        std::process::exit(1);
+    }
     (key.0, key.1)
 }
 
