@@ -37,6 +37,7 @@ Format: (Do not forget the semicolon at the end!)
 * [textfile]
   ````sh 
   apikey=[KEY];
+  path=[DEFAULT_PATH];
 
 ## Running the programming:
 You can run the program with the following command:
@@ -47,12 +48,16 @@ The needed flags are: "-u" for URLs or "-p" for PATHs.
     ````sh
     virustotal_folderscanner.exe [URLs] [FLAG]
   
-Example:
+Examples, when running from command-line interface:
 
 * [powershell]
     ````sh
     virustotal_folderscanner.exe google.de -u
-    virustotal_folderscanner.exe C:/users/user/downloads -p
+* [powershell]
+  ````sh
+  virustotal_folderscanner.exe C:/users/user/downloads -p
+  
+When running the application through clicking on the executable, simply omit the virus *virustotal_folderscanner.exe* part.
   
 ### Installation:
 1. Get a free API Key at [https://www.virustotal.com/gui/join-us](https://www.virustotal.com/gui/join-us)
@@ -70,10 +75,11 @@ Example:
     - [x] Filepaths for windows
 - [x] Add pre-release version
 - [x] Add folder-scan feature
+- [x] Option to read path from configfile
+- [ ] Code overhaul
 - [ ] Add max_scans feature per day (use max. free API request limit.)
 - [ ] Release version 1.0
 - [ ] Support Linux filesystem
-- [ ] Option to read paths from configfile
 - [ ] Add GUI
 
 ## License
