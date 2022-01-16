@@ -1,0 +1,3 @@
+api_key=[ENTER_API_KEY_HERE];
+
+path=[ENTER_DEFAULT_SCAN _PATH_HERE];
