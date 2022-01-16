@@ -16,6 +16,7 @@ pub struct ResponseControllerUrl {
 
 pub struct ResponseControllerFile {
     api_key: String,
+    file_name: String,
     response_code: i32,
     verbose_msg: String,
     sha_256: Option<String>,
@@ -44,6 +45,7 @@ impl ResponseControllerUrl {
         let mut scan_results = ("Error occurred".to_string(), -999);
         match &self.scan_id {
             Some(v) => {
+                println!("Sending report request for: {}", &self.url.as_ref().unwrap());
                 let positives = client.report_url(v).positives.unwrap() as i32;
                 scan_results = (self.url.as_ref().unwrap().clone(), positives);
             }
@@ -55,9 +57,10 @@ impl ResponseControllerUrl {
 }
 
 impl ResponseControllerFile {
-    pub fn new(key: String, response: FileScanResponse) -> Self {
+    pub fn new(key: String, name: &String, response: FileScanResponse) -> Self {
         ResponseControllerFile {
             api_key: key,
+            file_name: name.to_string(),
             response_code: response.response_code,
             resource: response.resource,
             permalink: response.permalink,
@@ -78,10 +81,12 @@ impl ResponseControllerFile {
                 Some(v) => {
                     let temp_results = client.report_file(v.as_str());
                     if temp_results.response_code == 1 {
-                        scan_results = (self.resource.as_ref().unwrap().clone(), temp_results.positives.unwrap() as i32);
+                        println!("Sending report request for: {}.", self.file_name);
+                        scan_results = (self.file_name.clone(), temp_results.positives.unwrap() as i32);
                         return scan_results;
                     } else {
                         retries += 1;
+                        println!("Retrying to get report for {}", self.file_name);
                         //Sleep timer is needed because the scan results aren't available instantly depending on the file size.
                         sleep(Duration::new(30, 0))
                     }
