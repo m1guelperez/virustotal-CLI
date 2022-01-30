@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="CargoProjects">
+    <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e014474b-cc16-4ece-9f65-366dde7ef8ed" name="Changes" comment="Resolved TODO tasks and refactored.">
+      <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/user_input.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/user_input.rs" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Rust File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="757zsh4i" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="23Ff6G0F2Ec0brTFDKrHpvzgj9l" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="cf.first.check.clang-format" value="false" />
+    <property name="cidr.known.project.marker" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
+    <property name="org.rust.disableDetachedFileInspectionC:/Users/migip/CLionProjects/virustotal-CLI/src/user_input.rs" value="true" />
+    <property name="settings.editor.selected.configurable" value="preferences.updates" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\migip\CLionProjects\virustotal-CLI" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Run virustotal_folderscanner" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
+      <option name="command" value="run --package virustotal_folderscanner --bin virustotal_folderscanner" />
+      <option name="workingDirectory" value="file://$PROJECT_DIR$" />
+      <option name="channel" value="DEFAULT" />
+      <option name="requiredFeatures" value="true" />
+      <option name="allFeatures" value="false" />
+      <option name="emulateTerminal" value="false" />
+      <option name="withSudo" value="false" />
+      <option name="backtrace" value="SHORT" />
+      <envs />
+      <option name="isRedirectInput" value="false" />
+      <option name="redirectInputPath" value="" />
+      <method v="2">
+        <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Cargo.Run virustotal_folderscanner" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="RustProjectSettings">
+    <option name="runExternalLinterOnTheFly" value="true" />
+    <option name="toolchainHomeDirectory" value="$USER_HOME$/.cargo/bin" />
+    <option name="version" value="2" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e014474b-cc16-4ece-9f65-366dde7ef8ed" name="Changes" comment="" />
+      <created>1641334578397</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1641334578397</updated>
+      <workItem from="1641334580028" duration="709000" />
+      <workItem from="1641335312877" duration="246000" />
+      <workItem from="1641335567051" duration="4461000" />
+      <workItem from="1641409742635" duration="14619000" />
+      <workItem from="1641424460195" duration="1090000" />
+      <workItem from="1641462233675" duration="1618000" />
+      <workItem from="1641507891131" duration="40000" />
+      <workItem from="1641507938674" duration="1171000" />
+      <workItem from="1641551499525" duration="62000" />
+      <workItem from="1641672568722" duration="14000" />
+      <workItem from="1641940227692" duration="5748000" />
+      <workItem from="1642017611322" duration="8365000" />
+      <workItem from="1642029025514" duration="24000" />
+      <workItem from="1642158459678" duration="703000" />
+      <workItem from="1642190841036" duration="1189000" />
+      <workItem from="1642192044123" duration="6188000" />
+      <workItem from="1642207848587" duration="1585000" />
+      <workItem from="1642269105092" duration="18307000" />
+      <workItem from="1642349062695" duration="2345000" />
+      <workItem from="1642539665360" duration="43000" />
+      <workItem from="1642539848726" duration="1408000" />
+      <workItem from="1642711186307" duration="813000" />
+      <workItem from="1642878585439" duration="3000" />
+      <workItem from="1642961488253" duration="982000" />
+      <workItem from="1643232728325" duration="104000" />
+      <workItem from="1643232867056" duration="172000" />
+      <workItem from="1643288188056" duration="244000" />
+      <workItem from="1643291803644" duration="1810000" />
+      <workItem from="1643315951739" duration="1595000" />
+      <workItem from="1643546259062" duration="15443000" />
+      <workItem from="1643576709943" duration="46000" />
+      <workItem from="1643576763338" duration="306000" />
+    </task>
+    <task id="LOCAL-00001" summary="Edited instructions and roadmap.">
+      <created>1641419180593</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1641419180593</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Added feature that you can toggle between URLs or PATHs via FLAGs. Additionally, some refactoring.">
+      <created>1641419272772</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1641419272772</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Updated dependencies.">
+      <created>1641419331140</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1641419331140</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Updated Roadmap.">
+      <created>1641419412961</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1641419412961</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Removed bug for CLI arguments which skipped the first argument.">
+      <created>1641422301245</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1641422301245</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Removed bug for CLI which did not skip the first argument which is the path of the process. Therefore, the program crashed while starting it with CLI arguments.">
+      <created>1641463850635</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1641463850635</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Updated start up instructions.">
+      <created>1641509056317</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1641509056317</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Refactoring.">
+      <created>1641509097196</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1641509097196</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Updated roadmap and incorporated API changes.">
+      <created>1642027483390</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1642027483390</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Added folderscan feature for files up to 32mb per file.">
+      <created>1642028107427</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1642028107427</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Updated roadmap and incorporated API changes.">
+      <created>1642028598190</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1642028598190</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Added folderscan feature for files up to 32mb per file.">
+      <created>1642028688473</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1642028688473</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Deleted unused module.">
+      <created>1642029043561</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1642029043561</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Added new examples.">
+      <created>1642278041136</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1642278041136</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Added consts and refactored some code.">
+      <created>1642278070698</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1642278070698</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Added consts and refactored some code.">
+      <created>1642278303341</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1642278303341</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Template for configfile.txt">
+      <created>1642291837536</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1642291837536</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Moves to root directory.">
+      <created>1642291917682</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1642291917682</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Added feature, that you can set up a default path.">
+      <created>1642293551931</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1642293551931</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Updated roadmap and examples.">
+      <created>1642293665361</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1642293665361</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Resolved TODO tasks and refactored.">
+      <created>1642351345350</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1642351345350</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Edited instructions and roadmap." />
+    <MESSAGE value="Added feature that you can toggle between URLs or PATHs via FLAGs. Additionally, some refactoring." />
+    <MESSAGE value="Updated dependencies." />
+    <MESSAGE value="Updated Roadmap." />
+    <MESSAGE value="Removed bug for CLI arguments which skipped the first argument." />
+    <MESSAGE value="Removed bug for CLI which did not skip the first argument which is the path of the process. Therefore, the program crashed while starting it with CLI arguments." />
+    <MESSAGE value="Updated start up instructions." />
+    <MESSAGE value="Refactoring." />
+    <MESSAGE value="Updated roadmap and incorporated API changes." />
+    <MESSAGE value="Added folderscan feature for files up to 32mb per file." />
+    <MESSAGE value="Deleted unused module." />
+    <MESSAGE value="Added new examples." />
+    <MESSAGE value="Added consts and refactored some code." />
+    <MESSAGE value="Template for configfile.txt" />
+    <MESSAGE value="Moves to root directory." />
+    <MESSAGE value="Added feature, that you can set up a default path." />
+    <MESSAGE value="Updated roadmap and examples." />
+    <MESSAGE value="Resolved TODO tasks and refactored." />
+    <option name="LAST_COMMIT_MESSAGE" value="Resolved TODO tasks and refactored." />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

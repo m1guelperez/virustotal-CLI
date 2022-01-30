@@ -10,6 +10,7 @@ pub fn process_user_input(args: Vec<String>, default_path: &str) -> (Vec<String>
     if args.len() <= 1 {
         io::stdin().read_line(&mut stdin_input).expect("Failed to read line.");
     } else {
+        //catch_escaped_character();
         let path_or_url = determine_path_or_url(&args);
         for arg in args.iter().skip(1) {
             cleared_args.push(arg.trim().to_string());
@@ -47,4 +48,12 @@ fn determine_path_or_url(commands: &Vec<String>) -> &'static str {
         eprintln!("Could not determine if it is a path or url");
         std::process::exit(1);
     }
+}
+
+fn catch_escaped_character(commands: &Vec<String>) {
+    let commands_length = commands.len();
+    if commands.last().unwrap().as_bytes()[commands_length] == b'p' || commands.last().unwrap().as_bytes()[commands_length] == b'u' {
+        println!("Yes works!");
+    }
+
 }

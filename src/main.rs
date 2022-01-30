@@ -10,15 +10,19 @@ mod user_input;
 mod configfile_controller;
 
 fn main() {
+    //Get CLI arguments
     let cli_arguments: Vec<String> = env::args().collect();
+    //Initialize configfile
     let configfile = Configfile::init();
     let api_key = configfile.api_key;
     let default_path = configfile.default_path;
     if default_path.is_empty() {
         println!("INFO: No default path provided.");
     }
+    //Process user input
     let arguments_and_type = user_input::process_user_input(cli_arguments, &default_path);
     let seperated_input: Vec<String> = arguments_and_type.0;
+    //Initialize client to make requests (API-Key, etc.)
     let client = RequestControllerClient::new(api_key.as_str());
 
     if seperated_input.is_empty() && !default_path.is_empty() {
@@ -32,6 +36,7 @@ fn main() {
     }
 }
 
+//Handle different requests
 fn handle_file_scan_requests(client: RequestControllerClient, seperated_input: Vec<String>) {
     let mut all_file_scans = HashMap::new();
     let mut path = String::new();
