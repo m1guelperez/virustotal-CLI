@@ -56,7 +56,7 @@ pub struct ResponseControllerFile {
 }
 
 impl ResponseControllerFile {
-    pub fn new(key: String, name: &String, response: FileScanResponse) -> Self {
+    pub fn new(key: String, name: &str, response: FileScanResponse) -> Self {
         ResponseControllerFile {
             api_key: key,
             file_name: name.to_string(),

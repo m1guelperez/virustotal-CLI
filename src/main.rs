@@ -59,7 +59,6 @@ fn handle_default_folder_scan_requests(client: RequestControllerClient, default_
     let mut all_file_scans = HashMap::new();
     println!("Current default path is: {}", default_path);
     let res = RequestControllerClient::send_file_scans(&client, default_path);
-
     for re in res {
         let vec_file_results = re.analyze_file_report();
         all_file_scans.insert(vec_file_results.0, vec_file_results.1);

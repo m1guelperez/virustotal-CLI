@@ -1,8 +1,7 @@
 use std::io;
-use crate::Configfile;
 
 ///Processes the user input. Checks for existing CLI arguments or std::inputs.
-pub fn process_user_input(args: Vec<String>, default_path: &str) -> (Vec<String>, &'static str) {
+pub fn process_user_input(mut args: Vec<String>, default_path: &str) -> (Vec<String>, &'static str) {
     let mut cleared_args = Vec::new();
     let mut stdin_input = String::new();
 
@@ -10,9 +9,14 @@ pub fn process_user_input(args: Vec<String>, default_path: &str) -> (Vec<String>
     if args.len() <= 1 {
         io::stdin().read_line(&mut stdin_input).expect("Failed to read line.");
     } else {
-        //catch_escaped_character();
-        let path_or_url = determine_path_or_url(&args);
-        for arg in args.iter().skip(1) {
+        let mut valid_args = Vec::new();
+        if args.len() > 1 && (args.last().unwrap().contains("-p") || args.last().unwrap().contains("-u")) {
+            valid_args = catch_escaped_chars_in_old_powershell_versions(&mut args);
+        } else {
+            valid_args = args
+        }
+        let path_or_url = determine_path_or_url(&valid_args);
+        for arg in valid_args.iter().skip(1) {
             cleared_args.push(arg.trim().to_string());
         }
         cleared_args.remove(cleared_args.len() - 1);
@@ -45,15 +49,31 @@ fn determine_path_or_url(commands: &Vec<String>) -> &'static str {
     } else if !commands.len() > 1 && (commands.last().unwrap().to_lowercase().trim() != "-p" && commands.last().unwrap().to_lowercase().trim() != "-u") {
         panic!("You have to provide either the '-u' or '-p' flag.");
     } else {
-        eprintln!("Could not determine if it is a path or url");
+        println!("Could not determine if it is a path or url");
         std::process::exit(1);
     }
 }
 
-fn catch_escaped_character(commands: &Vec<String>) {
-    let commands_length = commands.len();
-    if commands.last().unwrap().as_bytes()[commands_length] == b'p' || commands.last().unwrap().as_bytes()[commands_length] == b'u' {
-        println!("Yes works!");
+//Some Powershell versions have a problem it the path ends with a backslash. Here we try to filter this out
+fn catch_escaped_chars_in_old_powershell_versions(commands: &mut Vec<String>) -> Vec<String> {
+    let mut final_vec: Vec<String> = Vec::new();
+    //Push everything before the last command, which contains the flag
+    for command in commands.iter().take(commands.len() - 1) {
+        final_vec.push(command.to_string());
     }
+    if commands.last().unwrap().trim().contains("-p") || commands.last().unwrap().trim().contains("-u") {
+        let mut last_path = commands.last().unwrap().trim().to_string();
+        let mut flag_reversed = String::new();
+        flag_reversed.push(last_path.pop().unwrap());
+        flag_reversed.push(last_path.pop().unwrap());
+        //Delete the quotation marks
+        let mut flag = String::new();
+        flag.push(flag_reversed.pop().unwrap());
+        flag.push(flag_reversed.pop().unwrap());
 
+        final_vec.push(last_path);
+        final_vec.push(flag);
+    }
+    println!("Currently the final Vec is: {:?}", &final_vec);
+    final_vec
 }
