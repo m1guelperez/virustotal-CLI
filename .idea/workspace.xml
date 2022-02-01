@@ -78,7 +78,7 @@
       <recent name="C:\Users\migip\CLionProjects\virustotal-CLI" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Cargo.Test user_input::tests::catch_escaped_chars_in_old_powershell_version_test">
     <configuration name="Run virustotal_folderscanner" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
       <option name="command" value="run --package virustotal_folderscanner --bin virustotal_folderscanner" />
       <option name="workingDirectory" value="file://$PROJECT_DIR$" />
@@ -95,8 +95,42 @@
         <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Test user_input::tests" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
+      <option name="command" value="test --package virustotal_folderscanner --bin virustotal_folderscanner user_input::tests" />
+      <option name="workingDirectory" value="file://$PROJECT_DIR$" />
+      <option name="channel" value="DEFAULT" />
+      <option name="requiredFeatures" value="true" />
+      <option name="allFeatures" value="false" />
+      <option name="emulateTerminal" value="false" />
+      <option name="withSudo" value="false" />
+      <option name="backtrace" value="SHORT" />
+      <envs />
+      <option name="isRedirectInput" value="false" />
+      <option name="redirectInputPath" value="" />
+      <method v="2">
+        <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test user_input::tests::catch_escaped_chars_in_old_powershell_version_test" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
+      <option name="command" value="test --package virustotal_folderscanner --bin virustotal_folderscanner user_input::tests::catch_escaped_chars_in_old_powershell_version_test -- --exact" />
+      <option name="workingDirectory" value="file://$PROJECT_DIR$" />
+      <option name="channel" value="DEFAULT" />
+      <option name="requiredFeatures" value="true" />
+      <option name="allFeatures" value="false" />
+      <option name="emulateTerminal" value="false" />
+      <option name="withSudo" value="false" />
+      <option name="backtrace" value="SHORT" />
+      <envs />
+      <option name="isRedirectInput" value="false" />
+      <option name="redirectInputPath" value="" />
+      <method v="2">
+        <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Cargo.Test user_input::tests::catch_escaped_chars_in_old_powershell_version_test" />
+        <item itemvalue="Cargo.Test user_input::tests" />
         <item itemvalue="Cargo.Run virustotal_folderscanner" />
       </list>
     </recent_temporary>

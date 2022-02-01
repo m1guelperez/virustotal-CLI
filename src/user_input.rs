@@ -67,6 +67,8 @@ fn catch_escaped_chars_in_old_powershell_versions(commands: &mut Vec<String>) ->
         flag_reversed.push(last_path.pop().unwrap());
         flag_reversed.push(last_path.pop().unwrap());
         //Delete the quotation marks
+        last_path.pop();
+        last_path.pop();
         let mut flag = String::new();
         flag.push(flag_reversed.pop().unwrap());
         flag.push(flag_reversed.pop().unwrap());
@@ -76,4 +78,40 @@ fn catch_escaped_chars_in_old_powershell_versions(commands: &mut Vec<String>) ->
     }
     println!("Currently the final Vec is: {:?}", &final_vec);
     final_vec
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::user_input::{catch_escaped_chars_in_old_powershell_versions, determine_path_or_url};
+
+    #[test]
+    fn determine_path_or_url_test() {
+        let vec_url = vec!["google.de".to_string(), "-u".to_string()];
+        let url = determine_path_or_url(&vec_url);
+        assert_eq!(url, "url");
+
+        let vec_path = vec!["default_path".to_string(), "-p".to_string()];
+        let path = determine_path_or_url(&vec_path);
+        assert_eq!(path, "path");
+
+        let vec_path = vec!["".to_string()];
+        let path = determine_path_or_url(&vec_path);
+        assert_eq!(path, "default");
+    }
+
+    #[test]
+    #[should_panic(expected = "Could not determine if it is a path or url")]
+    fn determine_path_or_input_panic() {
+        let vec_path = vec![];
+        determine_path_or_url(&vec_path);
+    }
+
+    #[test]
+    fn catch_escaped_chars_in_old_powershell_version_test() {
+
+        let mut args = vec!["C:/Users/rust/virustotal_folderscanner.exe".to_string(), "C:/Users/X Y/Desktop/ -p".to_string()];
+        let res = catch_escaped_chars_in_old_powershell_versions(&mut args);
+        let final_vec = vec!["C:/Users/rust/virustotal_folderscanner.exe".to_string(), "C:/Users/X Y/Desktop".to_string(), "-p".to_string()];
+        assert_eq!(res, final_vec);
+    }
 }
