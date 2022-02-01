@@ -20,7 +20,7 @@ impl Configfile {
 }
 
 ///Returning a tuple such that we can propagate the number of skips to the next method, for reading
-/// out config values.
+///out config values.
 fn get_api_key_from_configfile() -> (String, i32) {
     let value_from_configfile = match fs::read_to_string(CONFIGFILE_NAME) {
         Ok(v) => v,
@@ -28,8 +28,7 @@ fn get_api_key_from_configfile() -> (String, i32) {
     };
     let key = iterate_through_configfile(value_from_configfile.as_str().trim(), 0);
     if key.0.is_empty() {
-        println!("Please provide an API_KEY!");
-        std::process::exit(1);
+        panic!("Please provide an API_KEY!");
     }
     (key.0, key.1)
 }
@@ -40,6 +39,9 @@ fn get_default_scan_path(skips_from_before: i32) -> (String, i32) {
         Err(_e) => panic!("Could not read from configfile!"),
     };
     let default_path = iterate_through_configfile(value_from_configfile.as_str().trim(), skips_from_before);
+    if default_path.0.is_empty() {
+        println!("INFO: No default path provided.");
+    }
     (default_path.0, default_path.1)
 }
 
@@ -62,4 +64,15 @@ fn iterate_through_configfile(config_file_contents: &str, skips: i32) -> (String
     }
     index += 1;
     (result, index)
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::Configfile;
+
+    #[test]
+    fn init_api_key() {
+        let config = Configfile::init();
+        assert_eq!(config.api_key.is_empty(),false);
+    }
 }

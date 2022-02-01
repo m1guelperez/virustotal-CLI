@@ -16,9 +16,6 @@ fn main() {
     let configfile = Configfile::init();
     let api_key = configfile.api_key;
     let default_path = configfile.default_path;
-    if default_path.is_empty() {
-        println!("INFO: No default path provided.");
-    }
     //Process user input
     let arguments_and_type = user_input::process_user_input(cli_arguments, &default_path);
     let seperated_input: Vec<String> = arguments_and_type.0;

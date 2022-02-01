@@ -9,7 +9,7 @@ pub fn process_user_input(mut args: Vec<String>, default_path: &str) -> (Vec<Str
     if args.len() <= 1 {
         io::stdin().read_line(&mut stdin_input).expect("Failed to read line.");
     } else {
-        let mut valid_args = Vec::new();
+        let valid_args;
         if args.len() > 1 && (args.last().unwrap().contains("-p") || args.last().unwrap().contains("-u")) {
             valid_args = catch_escaped_chars_in_old_powershell_versions(&mut args);
         } else {
@@ -39,18 +39,16 @@ pub fn process_user_input(mut args: Vec<String>, default_path: &str) -> (Vec<Str
 }
 
 fn determine_path_or_url(commands: &Vec<String>) -> &'static str {
-    println!("Commands length: {}", commands.len());
     if commands.len() <= 1 {
         "default"
     } else if commands.last().unwrap().to_lowercase().trim() == "-p" {
         "path"
     } else if commands.last().unwrap().to_lowercase().trim() == "-u" {
         "url"
-    } else if !commands.len() > 1 && (commands.last().unwrap().to_lowercase().trim() != "-p" && commands.last().unwrap().to_lowercase().trim() != "-u") {
+    } else if commands.len() >= 2 && (commands.last().unwrap().to_lowercase().trim() != "-p" && commands.last().unwrap().to_lowercase().trim() != "-u") {
         panic!("You have to provide either the '-u' or '-p' flag.");
     } else {
-        println!("Could not determine if it is a path or url");
-        std::process::exit(1);
+        panic!("Could not determine if it is a path or url");
     }
 }
 
@@ -85,30 +83,35 @@ mod tests {
     use crate::user_input::{catch_escaped_chars_in_old_powershell_versions, determine_path_or_url};
 
     #[test]
-    fn determine_path_or_url_test() {
-        let vec_url = vec!["google.de".to_string(), "-u".to_string()];
+    fn determine_path_or_url_test_url() {
+        let vec_url = vec!["C:/Users/rust/virustotal_folderscanner.exe".to_string(),"google.de".to_string(), "-u".to_string()];
         let url = determine_path_or_url(&vec_url);
         assert_eq!(url, "url");
+    }
 
-        let vec_path = vec!["default_path".to_string(), "-p".to_string()];
+    #[test]
+    fn determine_path_or_url_test_path() {
+        let vec_path = vec!["C:/Users/rust/virustotal_folderscanner.exe".to_string(),"default_path".to_string(), "-p".to_string()];
         let path = determine_path_or_url(&vec_path);
         assert_eq!(path, "path");
+    }
 
-        let vec_path = vec!["".to_string()];
+    #[test]
+    fn determine_path_or_url_test_default() {
+        let vec_path = vec!["C:/Users/rust/virustotal_folderscanner.exe".to_string()];
         let path = determine_path_or_url(&vec_path);
         assert_eq!(path, "default");
     }
 
     #[test]
-    #[should_panic(expected = "Could not determine if it is a path or url")]
-    fn determine_path_or_input_panic() {
-        let vec_path = vec![];
+    #[should_panic(expected = "You have to provide either the '-u' or '-p' flag.")]
+    fn determine_path_or_input_no_flag_provided() {
+        let vec_path = vec!["C:/Users/rust/virustotal_folderscanner.exe".to_string(),"test".to_string()];
         determine_path_or_url(&vec_path);
     }
 
     #[test]
     fn catch_escaped_chars_in_old_powershell_version_test() {
-
         let mut args = vec!["C:/Users/rust/virustotal_folderscanner.exe".to_string(), "C:/Users/X Y/Desktop/ -p".to_string()];
         let res = catch_escaped_chars_in_old_powershell_versions(&mut args);
         let final_vec = vec!["C:/Users/rust/virustotal_folderscanner.exe".to_string(), "C:/Users/X Y/Desktop".to_string(), "-p".to_string()];
