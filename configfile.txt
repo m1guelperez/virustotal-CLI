@@ -1,0 +1,3 @@
+api_key=aaaaaaaaaabbbbbbbbbbbbbccccccccccc;
+
+path=C:\Users\x\y\z;
